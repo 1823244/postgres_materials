@@ -27,7 +27,34 @@ log_min_duration_statement = 1   # Устанавливает минимальн
 
 Логи находятся в папке data\log
 
-#ff
+# Второй кластер на одном сервере Windows
+
+Чтобы запустить несколько инстансов на одной машине, надо проинициализировать кластеры в нужных папках данных (data)  
+
+Здесь инструкции по запуску второго сервиса  
+http://qaru.site/questions/719223/create-multiple-postgres-instances-on-same-machine  
+(  
+$ pg_ctl -D /path/to/datadb1 -o "-p 5433" -l /path/to/logdb1 start  
+$ pg_ctl -D /path/to/datadb2 -o "-p 5434" -l /path/to/logdb2 start  
+)  
+
+## Примеры  
+
+initdb -D d:\PostgreSQL1C11\datavi --locale=Russian_Russia --encoding=UTF8  
+initdb -D d:\PostgreSQL1C11\datavi --locale=Vietnamese_Vietnam --encoding=UTF8  
+
+старт сервиса (на указанном порту. считаем, что 5432 занят первым инстансом) 
+pg_ctl -D ^"d^:^\PostgreSQL1C11^\datavi^" -o "-p 5433" -l logfile start
+(logfile создается в каталоге bin) 
+
+## Кодировки (локали)
+Где брать, пока не понятно.
+Вариант --locale=Russian_Russia найден в интернете, --locale=Vietnamese_Vietnam подобран экспериментально
+
+
+## Еще ссылки  
+https://infostart.ru/public/21930/
+
 #ff
 #ff
 #ff
