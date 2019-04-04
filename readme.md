@@ -40,21 +40,34 @@ $ pg_ctl -D /path/to/datadb2 -o "-p 5434" -l /path/to/logdb2 start
 
 ## Примеры  
 
-initdb -D d:\PostgreSQL1C11\dataru --locale=Russian_Russia --encoding=UTF8  
-initdb -D d:\PostgreSQL1C11\datavi --locale=Vietnamese_Vietnam --encoding=UTF8  
+initdb -D D:\PostgreSQL1C11\dataru --locale=Russian_Russia --encoding=UTF8 --username=postgres --pwprompt  
+initdb -D D:\PostgreSQL1C11\datavi --locale=Vietnamese_Vietnam --encoding=UTF8 --username=postgres --pwprompt   
 
-старт сервиса (на указанном порту. считаем, что 5432 занят первым инстансом) 
-pg_ctl -D ^"d^:^\PostgreSQL1C11^\dataru^" -o "-p 5433" -l logfile start  
-pg_ctl -D ^"d^:^\PostgreSQL1C11^\datavi^" -o "-p 5434" -l logfile start
-(logfile создается в каталоге bin) 
+старт инстанса (на указанном порту. считаем, что 5432 занят первым инстансом)  
+pg_ctl -D ^"D^:^\PostgreSQL1C11^\dataru^" -o "-p 5433" -l logfile start  
+pg_ctl -D ^"D^:^\PostgreSQL1C11^\datavi^" -o "-p 5434" -l logfile start  
+(logfile создается в каталоге bin)  
+
+стоп инстанса  
+pg_ctl stop -D ^"D^:^\PostgreSQL1C11^\datavi^"  
+
+Создадим сервис
+(консоль с повышенными правами)  
+sc create pgsql_11_vietnam displayname= "pgsql_11_vietnam" obj= ".\Admin" password= "password" start=auto binPath= "d:\PostgreSQL1C11\bin\bin\pg_ctl.exe runservice -w -N pgsql_11_vietnam -D D:\PostgreSQL1C11\datavi"
+Здесь параметры  
+obj= ".\Admin" password= "password" - это учетная запись Windows  
+
+После создания сервиса надо зайти в postgresql.conf в новой папке данных и раскомментировать строку  
+#port = 5432  
+плюс указать нужный порт  
 
 ## Кодировки (локали)
-Где брать, пока не понятно.
-Вариант --locale=Russian_Russia найден в интернете, --locale=Vietnamese_Vietnam подобран экспериментально
+Где брать, пока не понятно.  
+Вариант --locale=Russian_Russia найден в интернете, --locale=Vietnamese_Vietnam подобран экспериментально  
 
 
 ## Еще ссылки  
-https://infostart.ru/public/21930/
+https://infostart.ru/public/21930/  
 
 #ff
 #ff
