@@ -40,11 +40,12 @@ $ pg_ctl -D /path/to/datadb2 -o "-p 5434" -l /path/to/logdb2 start
 
 ## Примеры  
 
-initdb -D d:\PostgreSQL1C11\datavi --locale=Russian_Russia --encoding=UTF8  
+initdb -D d:\PostgreSQL1C11\dataru --locale=Russian_Russia --encoding=UTF8  
 initdb -D d:\PostgreSQL1C11\datavi --locale=Vietnamese_Vietnam --encoding=UTF8  
 
 старт сервиса (на указанном порту. считаем, что 5432 занят первым инстансом) 
-pg_ctl -D ^"d^:^\PostgreSQL1C11^\datavi^" -o "-p 5433" -l logfile start
+pg_ctl -D ^"d^:^\PostgreSQL1C11^\dataru^" -o "-p 5433" -l logfile start  
+pg_ctl -D ^"d^:^\PostgreSQL1C11^\datavi^" -o "-p 5434" -l logfile start
 (logfile создается в каталоге bin) 
 
 ## Кодировки (локали)
