@@ -20,16 +20,23 @@ http://pgcookbook.ru/article/slow_queries_search.html
 
 Для этого в файле postgresql.conf (он в каталоге data) необходимо установить следующие параметры:
 
+log_destination = 'stderr' - оставляем
+logging_collector = on - если не указать, то логи пойдут в журнал приложений windows
+можно указать абсолютный путь, например D:/pg/data/log
 log_duration = on                # Включает логирование запросов
 log_min_duration_statement = 1   # Устанавливает минимальное время (в миллисекундах) выполнения запроса, который попадает в лог
 
 и перезагрузить сервер
 
-Логи находятся в папке data\log
+Логи находятся в папке log_directory
+для основного инстанса это обычно data\log
 
 # Второй кластер на одном сервере Windows
 
 Чтобы запустить несколько инстансов на одной машине, надо проинициализировать кластеры в нужных папках данных (data)  
+
+Справка initdb  
+https://postgrespro.ru/docs/postgresql/9.6/app-initdb  
 
 Здесь инструкции по запуску второго сервиса  
 http://qaru.site/questions/719223/create-multiple-postgres-instances-on-same-machine  
@@ -66,9 +73,23 @@ obj= ".\Admin" password= "password" - это учетная запись Windows
 Вариант --locale=Russian_Russia найден в интернете, --locale=Vietnamese_Vietnam подобран экспериментально  
 
 
-## Еще ссылки  
+## Еще ссылки
+  
 https://infostart.ru/public/21930/  
 
-#ff
+# Запрос работает в 1С и не работает в PGAdmin JetBrains DataGrip (Postgres на Windows)
+(Но работает в postgres на linux)  
+
+Возможно, проблема в конвертации _IDRRef  
+Перехваченный запрос в логе выглядит так
+'''
+T85._Fld10662RRef = '\\221\\244\\310\\243\\357\\016\\250\\026M5\\324\\363\\304|\\337\\232'::bytea  
+'''
+
+Чтобы это условие правильно работало на PG windows, нужно  
+1) убрать ::bytea
+2) заменить \\ на \
+
+
 #ff
 #ff
