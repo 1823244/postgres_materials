@@ -101,9 +101,7 @@ https://infostart.ru/public/21930/
 T85._Fld10662RRef = '\\221\\244\\310\\243\\357\\016\\250\\026M5\\324\\363\\304|\\337\\232'::bytea  
 ```
 
-Чтобы это условие правильно работало на PG windows, нужно  
-1) убрать `::bytea`
-2) заменить `\\` на `\`
+Чтобы это условие правильно работало на PG windows, нужно заменить `\\` на `\`  
 
 Эта функция переводит эскейп-запись в более привычную (сначала надо убрать двойные слэши)  
 ```
@@ -119,5 +117,38 @@ cast('+\200\000%\220r\277l\021\343\326\204\202C\367\266'::bytea as varchar)
 \x2b5c3230305c303030255c323230725c3237376c5c3032315c3334335c3332365c3230345c323032435c3336375c323636
 ```
 
-#ff
+см. также  
+Функция convert()  
+
+# MISCELLANEOUS
+
+## Аналитика для DBA
+
+https://habr.com/ru/post/13992/
+
+## Анализ планов запросов (надо скопировать текстовый explain)
+
+https://explain.depesz.com/s/Rdhh
+
+## SQL Manager (USD 140 - 476)
+
+https://www.sqlmanager.net/products/postgresql/manager
+
+## Оптимизация запросов. Основы EXPLAIN в PostgreSQL
+
+https://habr.com/ru/post/203320/
+
+## sql formatter
+
+http://www.dpriver.com/pp/sqlformat.htm
+
+## Логическая обработка запросов: предложения FROM и объединения
+
+https://www.osp.ru/winitpro/2016/05/13049232/
+http://jurnali-online.ru/windows-it-prore
+
+## DEMO-databases (like NorthWind for MSSQL)
+ 
+https://postgrespro.ru/education/demodb
+
 #ff
