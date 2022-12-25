@@ -25,7 +25,19 @@ logging_collector = on - если не указать, то логи пойду�
 можно указать абсолютный путь, например D:/pg/data/log
 log_duration = on                # Включает логирование запросов
 log_min_duration_statement = 1   # Устанавливает минимальное время (в миллисекундах) выполнения запроса, который попадает в лог
-
+Добавить загрузку модуля  
+session_preload_libraries = 'auto_explain' # планы запросов
+Подробнее здесь https://postgrespro.ru/docs/postgrespro/10/auto-explain  
+И установить некоторые параметры  
+auto_explain.log_min_duration (integer) 
+auto_explain.log_analyze (boolean) 
+auto_explain.log_timing (boolean)  
+Пример  
+auto_explain.log_min_duration = 50
+auto_explain.log_analyze = on
+auto_explain.log_timing = on
+		   
+		   
 и перезагрузить сервер
 
 Логи находятся в папке log_directory
@@ -151,4 +163,14 @@ http://jurnali-online.ru/windows-it-prore
  
 https://postgrespro.ru/education/demodb
 
-#ff
+# ff
+
+# ff
+
+# ff
+
+# ff
+
+# ff
+
+# ff
